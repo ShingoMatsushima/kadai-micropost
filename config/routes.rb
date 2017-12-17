@@ -13,6 +13,7 @@ Rails.application.routes.draw do
     member do
     get :followings
     get :followers
+    get :favorites
     end
   end
 
@@ -21,5 +22,8 @@ Rails.application.routes.draw do
 
   #フォロー/アンフォロー
   resources :relationships, only: [:create, :destroy]
+
+  #いいね/いいね解除
+  resources :likes, only: [:create, :destroy]
 
 end
