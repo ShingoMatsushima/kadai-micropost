@@ -9,8 +9,17 @@ Rails.application.routes.draw do
 
   #ユーザ登録ページ
   get 'signup', to: 'users#new'
-  resources :users, only: [:index, :show, :new, :create]
+  resources :users, only: [:index, :show, :new, :create] do
+    member do
+    get :followings
+    get :followers
+    end
+  end
 
   #投稿ページ
   resources :microposts, only: [:create, :destroy]
+
+  #フォロー/アンフォロー
+  resources :relationships, only: [:create, :destroy]
+
 end
