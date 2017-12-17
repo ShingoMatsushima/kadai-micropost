@@ -15,6 +15,9 @@ class MicropostsController < ApplicationController
   end
 
   def destroy
+    @micropost.likes.each do |like|
+      like.destroy
+    end
     @micropost.destroy
     flash[:success] = 'メッセージを削除しました'
     redirect_back(fallback_location: root_path)
